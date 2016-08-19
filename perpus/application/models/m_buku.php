@@ -28,6 +28,17 @@ class M_buku extends CI_Model{
         
         return $query;
     }
+
+    function detail($kode){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->join('jenis', 'jenis.id_jenis = buku.id_jenis');
+        $this->db->join('subject', 'subject.id_subject = buku.id_subject');
+        $this->db->where($this->primary,$kode);
+        $query=$this->db->get();
+        
+        return $query;
+    }
     
     function simpan($jenis){
         $this->db->insert($this->table,$jenis);

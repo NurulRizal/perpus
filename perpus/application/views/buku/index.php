@@ -16,6 +16,7 @@
                                         <td>Klasifikasi</td>
                                         <td>Lokasi Rak</td>
                                         <td>Stock Koleksi</td>
+                                        <td>Barcode</td>
                                         <td></td>
                                     </tr>
                                 </thead>
@@ -30,6 +31,7 @@
                                         <td><?php echo substr($row->klasifikasi, 3, 20);?>...</td>
                                         <td><?php echo $row->lokasi;?></td>
                                         <td><?php echo $row->stock;?></td>
+                                        <td><img src="<?php echo base_url('assets/img/'.$row->barcode);?>" height="100px" width="100px"></td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <a href="<?php echo site_url('buku/edit/'.$row->kode_buku);?>" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a>

@@ -100,8 +100,7 @@
             <!-- Intro -->
             <section class="site-section site-section-light site-section-top themed-background-dark">
                 <div class="container">
-                    <h1 class="text-center animation-slideDown"><strong>Our Work</strong></h1>
-                    <h2 class="h3 text-center animation-slideUp">We will be happy to work together and bring your ideas to life!</h2>
+                    <h1 class="animation-slideDown"><strong><?php echo $buku->judul;?></strong></h1>
                 </div>
             </section>
             <!-- END Intro -->
@@ -109,17 +108,75 @@
             <!-- Content -->
             <section class="site-content site-section">
                 <div class="container">
-                    <div class="row portfolio">
-                    <?php foreach($depan->result() as $row):?>
-                        <div class="col-sm-4 portfolio-item animation-fadeInQuick" data-category="design">
-                            <a href="<?php echo site_url('depan/koleksi/'.$row->kode_buku);?>">
-                                <img src="<?php echo base_url('assets/img/'.$row->image);?>" alt="Image" class="img-responsive">
-                                <span class="portfolio-item-info"><strong><?php echo $row->judul;?></strong></span>
-                            </a>
+                    <!-- Project Navigation -->
+                    <div class="site-block clearfix">
+                        <div class="btn-group pull-right">
+                        <?php if ($buku->stock > 0) {?>
+                            <a href="#" class="btn btn-primary"></i> Pinjam</a>
+                            <?php } else {?>
+                            <a href="" class="btn btn-primary disabled"></i> Pinjam</a>
+                            <?php } ?>
                         </div>
-                    <?php endforeach; ?>
+                        <a href="<?php echo site_url('depan');?>" class="btn btn-primary pull-left"><i class="fa fa-th-large"></i> Semua Koleksi</a>
                     </div>
-                    <!-- END Portfolio Items -->
+                    <!-- END Project Navigation -->
+
+                    <!-- Project Info -->
+                    <div class="row">
+                        <!-- Project Slider -->
+                        <div class="col-sm-5 site-block">
+                            <div id="project-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner text-center">
+                                    <div class="active item">
+                                        <img src="<?php echo base_url('assets/img/'.$buku->image);?>" alt="Image 1">
+                                    </div>
+                                </div>
+                                <!-- END Wrapper for slides -->
+                            </div>
+
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 50%;"><strong>ISBN</strong></td>
+                                        <td class="text-right"><?php echo $buku->isbn;?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Kategori</strong></td>
+                                        <td class="text-right"><?php echo $buku->nama_subject;?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Jenis</strong></td>
+                                        <td class="text-right"><?php echo $buku->nama_jenis;?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Stock</strong></td>
+                                        <td class="text-right"><?php echo $buku->stock;?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- END Project Slider -->
+
+                        <!-- Project Details -->
+                        <div class="col-sm-7 site-block">
+                            <h3 class="site-heading"><strong>Klasifikasi</strong> Koleksi</h3>
+                            <?php echo $buku->klasifikasi;?> 
+                            <strong>Penerbit</strong><br>
+                            <?php echo $buku->penerbit;?><br> 
+                            <strong>Diterbitkan di</strong><br>
+                            <?php echo $buku->tmpt_terbit;?> <br>
+                            <strong>Tahun</strong><br>
+                            <?php echo $buku->thn_terbit;?> <br>
+                            <strong>Pengarang</strong><br>
+                            <?php echo $buku->pengarang;?> <br>
+                            <?php echo $buku->pengarang2;?> <br>
+                            <?php echo $buku->pengarang3;?> 
+                        </div>
+                        <!-- END Project Details -->
+                    </div>
+                    <!-- END Project Info -->
+                    <hr>
                 </div>
             </section>
             <!-- END Content -->

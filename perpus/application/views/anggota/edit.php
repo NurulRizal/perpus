@@ -98,7 +98,7 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="example-text-input">Gambar</label>
                                         <div class="col-md-9">
-                                            <img src="<?php echo base_url('assets/img/anggota'.$anggota['image']);?>" height="200px" width="200px">
+                                            <img src="<?php echo base_url('assets/img/anggota/'.$anggota['image']);?>" height="200px" width="200px">
                                         </div>
                                     </div>
                                     <div class="form-group">

@@ -11,6 +11,11 @@ class Depan extends CI_Controller{
         $data['title']="Home";
         $data['depan']=$this->m_buku->semuaFront();
         $this->load->view('depan/index',$data);
+    }
+
+    function koleksi($id){
+        $data['buku']=$this->m_buku->detail($id)->row();
+        $this->load->view('depan/detail',$data);
     }    
     
     function logout(){

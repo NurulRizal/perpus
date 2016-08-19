@@ -193,7 +193,7 @@
                         <div class="sidebar-section sidebar-user clearfix">
                             <div class="sidebar-user-avatar">
                                 <a href="page_ready_user_profile.html">
-                                    <img src="<?php echo base_url('assets/img/placeholders/avatars/avatar2.jpg');?>" alt="avatar">
+                                    <img src="<?php echo base_url('assets/img/'.$this->session->userdata('gambar'));?>" alt="avatar">
                                 </a>
                             </div>
                             <div class="sidebar-user-name"><?php echo $this->session->userdata('username'); ?></div>

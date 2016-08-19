@@ -45,6 +45,9 @@ class Buku extends CI_Controller{
         $data['title']="Tambah Buku";
         $data['jenis']=$this->m_jenis->semua($this->limit,$offset,$order_jenis,$order_type)->result();
         $data['subject']=$this->m_subject->semua($this->limit,$offset,$order_subject,$order_type)->result();
+        
+        
+
         $this->_set_rules();
         if($this->form_validation->run()==true){//jika validasi dijalankan dan benar
             $kode=$this->input->post('kode'); // mendapatkan input dari kode
@@ -55,6 +58,13 @@ class Buku extends CI_Controller{
             }else{ // jika kode buku belum ada, maka simpan
                 
                 //setting konfiguras upload image
+                $this->load->library('zend');
+                $this->zend->load('Zend/Barcode');
+                $file=Zend_Barcode::draw('code128', 'image', array('text'=>$this->input->post('kode')), array());
+                $code = time().$this->input->post('kode');
+                //$barcode = file_get_contents($file);
+                imagepng($file, './assets/img/'.$code.'.png');
+               // file_put_contents('./assets/img/'.$code.'.png', $Barcode);
                 $config['upload_path'] = './assets/img/';
         		$config['allowed_types'] = 'gif|jpg|png|pdf|jpeg';
         		$config['max_size']	= '5000';
@@ -83,6 +93,7 @@ class Buku extends CI_Controller{
                     'image'=>$gambar,
                     'lokasi'=>$this->input->post('lokasi'),
                     'stock'=>$this->input->post('stock'),
+                    'barcode'=>$code.'.png',
                     'kodepanggil'=>$this->input->post('kodepanggil'),
                     'isbn'=>$this->input->post('isbn'),
                     'id_subject'=>$this->input->post('subject'),

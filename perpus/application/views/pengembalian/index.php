@@ -20,6 +20,7 @@
                             $("#pinjam").val(data[1]);
                             $("#kembali").val(data[2]);
                             $("#nama").val(data[3]);
+                            $("#id").val(data[4]);
                             
                             $("#denda").attr("disabled",false);
                             $("#denda").focus();
@@ -52,6 +53,7 @@
             var denda=$("#denda").val();
             var nominal=parseInt($("#nominal").val());
             var no=$("#no").val();
+            var id=$("#id").val();
             
             if (no=="" || nis=="") {
                 alert("Pilih ID Transaksi");
@@ -67,7 +69,7 @@
                     $.ajax({
                         url:"<?php echo site_url('pengembalian/simpan');?>",
                         type:"POST",
-                        data:"no="+no+"&denda="+denda+"&nominal="+nominal,
+                        data:"no="+no+"&denda="+denda+"&nominal="+nominal+"&id="+id,
                         cache:false,
                         success:function(html){
                             alert("Data Berhasil disimpan");
@@ -79,7 +81,7 @@
                 $.ajax({
                     url:"<?php echo site_url('pengembalian/simpan');?>",
                     type:"POST",
-                    data:"no="+no+"&denda="+denda+"&nominal="+nominal,
+                    data:"no="+no+"&denda="+denda+"&nominal="+nominal+"&id="+id,
                     cache:false,
                     success:function(html){
                         alert("Data Berhasil disimpan");
@@ -166,7 +168,7 @@
                         <input type="text" name="nama" id="nama" class="form-control" readonly="readonly">
                     </div>
                 </div>
-                
+                <input type="text" id='id' name='id'>
                 <div class="form-group">
                     <label class="col-lg-4 control-label">Denda</label>
                     <div class="col-lg-7">
