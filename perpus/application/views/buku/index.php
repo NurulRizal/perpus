@@ -27,7 +27,7 @@
                                         <td><?php echo $row->kode_buku;?></td>
                                         <td><?php echo $row->judul;?></td>
                                         <td><?php echo $row->pengarang;?></td>
-                                        <td><?php echo $row->klasifikasi;?></td>
+                                        <td><?php echo substr($row->klasifikasi, 3, 20);?>...</td>
                                         <td><?php echo $row->lokasi;?></td>
                                         <td><?php echo $row->stock;?></td>
                                         <td class="text-center">

@@ -198,10 +198,9 @@
                             </div>
                             <div class="sidebar-user-name"><?php echo $this->session->userdata('username'); ?></div>
                             <div class="sidebar-user-links">
-                                <a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
-                                <a href="page_ready_inbox.html" data-toggle="tooltip" data-placement="bottom" title="Messages"><i class="gi gi-envelope"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Profile"><i class="gi gi-user"></i></a>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="Messages"><i class="gi gi-envelope"></i></a>
                                 <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
-                                <a href="#modal-user-settings" data-toggle="modal" class="enable-tooltip" data-placement="bottom" title="Settings"><i class="gi gi-cogwheel"></i></a>
                                 <a href="<?php echo site_url('dashboard/logout');?>" data-toggle="tooltip" data-placement="bottom" title="Logout"><i class="gi gi-exit"></i></a>
                             </div>
                         </div>
