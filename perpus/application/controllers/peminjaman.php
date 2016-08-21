@@ -5,6 +5,7 @@ class Peminjaman extends CI_Controller{
         parent::__construct();
         $this->load->library(array('form_validation','template'));
         $this->load->model('m_peminjaman');
+        $this->load->model('m_buku');
         
         if(!$this->session->userdata('username')){
             redirect('web');
@@ -40,6 +41,11 @@ class Peminjaman extends CI_Controller{
                 'status'=>"N"
             );
             $this->m_peminjaman->simpan($info);
+            $data=$this->m_buku->cek($row->kode_buku);
+            $info=array(
+                    'stock'=>$data->row()->stock-1,
+                );
+            $this->m_buku->update($data->row()->kode_buku,$info);
             
             //hapus data di temp
             $this->m_peminjaman->hapusTmp($row->kode_buku);

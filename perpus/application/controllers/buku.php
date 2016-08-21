@@ -6,6 +6,8 @@ class Buku extends CI_Controller{
         parent::__construct();
         $this->load->library(array('template','form_validation','pagination','upload'));
         $this->load->model('m_buku');
+        $this->load->model('m_jenis');
+        $this->load->model('m_subject');
         
         if(!$this->session->userdata('username')){
             redirect('web');
@@ -39,8 +41,13 @@ class Buku extends CI_Controller{
     }
     
     
-    function tambah(){
+    function tambah($offset=0,$order_jenis='id_jenis',$order_subject='id_subject',$order_type='asc'){
         $data['title']="Tambah Buku";
+        $data['jenis']=$this->m_jenis->semua($this->limit,$offset,$order_jenis,$order_type)->result();
+        $data['subject']=$this->m_subject->semua($this->limit,$offset,$order_subject,$order_type)->result();
+        
+        
+
         $this->_set_rules();
         if($this->form_validation->run()==true){//jika validasi dijalankan dan benar
             $kode=$this->input->post('kode'); // mendapatkan input dari kode
@@ -51,12 +58,19 @@ class Buku extends CI_Controller{
             }else{ // jika kode buku belum ada, maka simpan
                 
                 //setting konfiguras upload image
+                $this->load->library('zend');
+                $this->zend->load('Zend/Barcode');
+                $file=Zend_Barcode::draw('code128', 'image', array('text'=>$this->input->post('kode')), array());
+                $code = time().$this->input->post('kode');
+                //$barcode = file_get_contents($file);
+                imagepng($file, './assets/img/'.$code.'.png');
+               // file_put_contents('./assets/img/'.$code.'.png', $Barcode);
                 $config['upload_path'] = './assets/img/';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= '1000';
-		$config['max_width']  = '2000';
-		$config['max_height']  = '1024';
-                
+        		$config['allowed_types'] = 'gif|jpg|png|pdf|jpeg';
+        		$config['max_size']	= '5000';
+        		$config['max_width']  = '2000';
+        		$config['max_height']  = '1024';
+                        
                 $this->upload->initialize($config);
                 if(!$this->upload->do_upload('gambar')){
                     $gambar="";
@@ -64,12 +78,32 @@ class Buku extends CI_Controller{
                     $gambar=$this->upload->file_name;
                 }
                 
+                if(!$this->upload->do_upload('ebook')){
+                    $ebook="";
+                }else{
+                    $ebook=$this->upload->file_name;
+                }
+
                 $info=array(
                     'kode_buku'=>$this->input->post('kode'),
                     'judul'=>$this->input->post('judul'),
                     'pengarang'=>$this->input->post('pengarang'),
                     'klasifikasi'=>$this->input->post('klasifikasi'),
-                    'image'=>$gambar
+                    'ebook'=>$ebook,
+                    'image'=>$gambar,
+                    'lokasi'=>$this->input->post('lokasi'),
+                    'stock'=>$this->input->post('stock'),
+                    'barcode'=>$code.'.png',
+                    'kodepanggil'=>$this->input->post('kodepanggil'),
+                    'isbn'=>$this->input->post('isbn'),
+                    'id_subject'=>$this->input->post('subject'),
+                    'id_jenis'=>$this->input->post('jenis'),
+                    'penerbit'=>$this->input->post('penerbit'),
+                    'thn_terbit'=>$this->input->post('thn_terbit'),
+                    'tmpt_terbit'=>$this->input->post('tmpt_terbit'),
+                    'pengarang2'=>$this->input->post('pengarang2'),
+                    'pengarang3'=>$this->input->post('pengarang3'),
+                    'publish'=>$this->input->post('publish')
                 );
                 $this->m_buku->simpan($info);
                 redirect('buku/index/add_success');
@@ -81,15 +115,17 @@ class Buku extends CI_Controller{
         }
     }
     
-    function edit($id){
+    function edit($id,$offset=0,$order_jenis='id_jenis',$order_subject='id_subject',$order_type='asc'){
         $data['title']="Edit data Buku";
+        $data['jenis']=$this->m_jenis->semua($this->limit,$offset,$order_jenis,$order_type)->result();
+        $data['subject']=$this->m_subject->semua($this->limit,$offset,$order_subject,$order_type)->result();
         $this->_set_rules();
         if($this->form_validation->run()==true){
             $kode=$this->input->post('kode');
             
             //setting konfiguras upload image
             $config['upload_path'] = './assets/img/';
-	    $config['allowed_types'] = 'gif|jpg|png';
+	    $config['allowed_types'] = 'gif|jpg|png|pdf|jpeg';
             $config['max_size']	= '1000';
 	    $config['max_width']  = '2000';
 	    $config['max_height']  = '1024';
@@ -100,13 +136,51 @@ class Buku extends CI_Controller{
             }else{
                 $gambar=$this->upload->file_name;
             }
-            
-            $info=array(
-                'judul'=>$this->input->post('judul'),
-                'pengarang'=>$this->input->post('pengarang'),
-                'klasifikasi'=>$this->input->post('klasifikasi'),
-                'image'=>$gambar
-            );
+
+            if(!$this->upload->do_upload('ebook')){
+                $ebook="";
+            }else{
+                $ebook=$this->upload->file_name;
+            }
+            if($gambar == ""){
+                $info=array(
+                    'judul'=>$this->input->post('judul'),
+                    'pengarang'=>$this->input->post('pengarang'),
+                    'klasifikasi'=>$this->input->post('klasifikasi'),
+                    'lokasi'=>$this->input->post('lokasi'),
+                        'stock'=>$this->input->post('stock'),
+                        'kodepanggil'=>$this->input->post('kodepanggil'),
+                        'isbn'=>$this->input->post('isbn'),
+                        'id_subject'=>$this->input->post('subject'),
+                        'id_jenis'=>$this->input->post('jenis'),
+                        'penerbit'=>$this->input->post('penerbit'),
+                        'thn_terbit'=>$this->input->post('thn_terbit'),
+                        'tmpt_terbit'=>$this->input->post('tmpt_terbit'),
+                        'pengarang2'=>$this->input->post('pengarang2'),
+                        'pengarang3'=>$this->input->post('pengarang3'),
+                        'publish'=>$this->input->post('publish')
+                );
+            } else {
+                $info=array(
+                    'judul'=>$this->input->post('judul'),
+                    'pengarang'=>$this->input->post('pengarang'),
+                    'klasifikasi'=>$this->input->post('klasifikasi'),
+                    'image'=>$gambar,
+                    'lokasi'=>$this->input->post('lokasi'),
+                    'ebook'=>$ebook,
+                        'stock'=>$this->input->post('stock'),
+                        'kodepanggil'=>$this->input->post('kodepanggil'),
+                        'isbn'=>$this->input->post('isbn'),
+                        'id_subject'=>$this->input->post('subject'),
+                        'id_jenis'=>$this->input->post('jenis'),
+                        'penerbit'=>$this->input->post('penerbit'),
+                        'thn_terbit'=>$this->input->post('thn_terbit'),
+                        'tmpt_terbit'=>$this->input->post('tmpt_terbit'),
+                        'pengarang2'=>$this->input->post('pengarang2'),
+                        'pengarang3'=>$this->input->post('pengarang3'),
+                        'publish'=>$this->input->post('publish')
+                );
+            }
             $this->m_buku->update($kode,$info);
             
             $data['buku']=$this->m_buku->cek($id)->row_array();
@@ -128,6 +202,12 @@ class Buku extends CI_Controller{
         $this->m_buku->hapus($kode);
     }
     
+    function printBarcode($kode){
+        $this->load->library('zend');
+        $this->zend->load('Zend/Barcode');
+        Zend_Barcode::render('code128', 'image', array('text'=>$kode), array());
+    }
+
     function cari(){
         $data['title']="Pencairan";
         $cari=$this->input->post('cari');
@@ -144,10 +224,7 @@ class Buku extends CI_Controller{
     }
     
     function _set_rules(){
-        $this->form_validation->set_rules('kode','Kode Buku','required|max_length[5]');
-        $this->form_validation->set_rules('judul','Judul Buku','required|max_length[100]');
-        $this->form_validation->set_rules('pengarang','Pengarang','required|max_length[50]');
-        $this->form_validation->set_rules('klasifikasi','Klasifikasi','required|max_length[25]');
-        $this->form_validation->set_error_delimiters("<div class='alert alert-danger'>","</div>");
+        $this->form_validation->set_rules('kode','Kode Buku','required|max_length[100]');
+        $this->form_validation->set_rules('judul','Judul Buku','required|max_length[100]'); 
     }
 }

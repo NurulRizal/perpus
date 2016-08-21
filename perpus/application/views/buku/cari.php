@@ -1,7 +1,7 @@
 <div class="nav navbar-nav navbar-right">
     <form class="navbar-form navbar-left" role="search" action="<?php echo site_url('buku/cari');?>" method="post">
         <div class="form-group">
-            <label>Cari Kode / Judul Buku</label>
+            <label>Cari Kode / Judul Koleksi</label>
             <input type="text" class="form-control" placeholder="Search" name="cari">
         </div>
         <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i> Cari</button>
@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <td>No.</td>
-            <td>Kode Buku</td>
+            <td>Kode Koleksi</td>
             <td>Judul</td>
             <td>Pengarang</td>
             <td>Klasifikasi</td>

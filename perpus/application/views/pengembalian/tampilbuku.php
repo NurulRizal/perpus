@@ -1,8 +1,8 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <td>Kode Buku</td>
-            <td>Judul Buku</td>
+            <td>Kode Koleksi</td>
+            <td>Judul Koleksi</td>
             <td>Pengarang</td>
         </tr>
     </thead>

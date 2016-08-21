@@ -4,7 +4,7 @@ class Dashboard extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('m_petugas');
-        $this->load->library(array('form_validation','template'));
+        $this->load->library(array('template','form_validation','pagination','upload'));
         
         if(!$this->session->userdata('username')){
             redirect('web');
@@ -39,9 +39,26 @@ class Dashboard extends CI_Controller{
                 $data['message']="<div class='alert alert-danger'>Username sudah digunakan</div>";
                 $this->template->display('dashboard/tambahpetugas',$data);
             }else{
+                $config['upload_path'] = './assets/img/anggota/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size'] = '1000';
+        $config['max_width']  = '2000';
+        $config['max_height']  = '1024';
+                
+            $this->upload->initialize($config);
+            if(!$this->upload->do_upload('gambar')){
+                $gambar="";
+            }else{
+                $gambar=$this->upload->file_name;
+            }
                 $info=array(
                     'user'=>$this->input->post('user'),
-                    'password'=>md5($this->input->post('password'))
+                    'password'=>md5($this->input->post('password')),
+                    'kode_staff'=>$this->input->post('staff'),
+                    'email'=>$this->input->post('email'),
+                    'tlp'=>$this->input->post('tlp'),
+                    'role'=>$this->input->post('role'),
+                'gambar'=>$gambar
                 );
                 $this->m_petugas->simpan($info);
                 redirect('dashboard/petugas/add_success');
@@ -57,10 +74,51 @@ class Dashboard extends CI_Controller{
         $this->_set_rules();
         if($this->form_validation->run()==true){
             $id=$this->input->post('id');
-            $info=array(
+            if($this->input->post('password') == ''){
+                $config['upload_path'] = './assets/img/anggota/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['max_size'] = '1000';
+        $config['max_width']  = '2000';
+        $config['max_height']  = '1024';
+                
+            $this->upload->initialize($config);
+            if(!$this->upload->do_upload('gambar')){
+                $gambar="";
+            }else{
+                $gambar=$this->upload->file_name;
+            }
+                $info=array(
                 'user'=>$this->input->post('user'),
-                'password'=>md5($this->input->post('password'))
+                    'kode_staff'=>$this->input->post('staff'),
+                    'email'=>$this->input->post('email'),
+                    'tlp'=>$this->input->post('tlp'),
+                    'role'=>$this->input->post('role'),
+                'gambar'=>$gambar
             );
+            } else {
+                $config['upload_path'] = './assets/img/anggota/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '1000';
+        $config['max_width']  = '2000';
+        $config['max_height']  = '1024';
+                
+            $this->upload->initialize($config);
+            if(!$this->upload->do_upload('gambar')){
+                $gambar="";
+            }else{
+                $gambar=$this->upload->file_name;
+            }
+                $info=array(
+                'user'=>$this->input->post('user'),
+                    'password'=>md5($this->input->post('password')),
+                    'kode_staff'=>$this->input->post('staff'),
+                    'email'=>$this->input->post('email'),
+                    'tlp'=>$this->input->post('tlp'),
+                    'role'=>$this->input->post('role'),
+                'gambar'=>$gambar
+            );    
+            }
+            
             $this->m_petugas->update($id,$info);
             $data['petugas']=$this->m_petugas->cekId($id)->row_array();
             $data['message']="<div class='alert alert-success'>Data Berhasil diupdate</div>";
@@ -79,7 +137,6 @@ class Dashboard extends CI_Controller{
     
     function _set_rules(){
         $this->form_validation->set_rules('user','username','required|trim');
-        $this->form_validation->set_rules('password','password','required|trim');
         $this->form_validation->set_error_delimiters("<div class='alert alert-danger'>","</div>");
     }
     

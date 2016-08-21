@@ -51,9 +51,16 @@ class Web extends CI_Controller{
             $cek=$this->m_petugas->cek($username,md5($password));
             if($cek->num_rows()>0){
                 //login berhasil, buat session
-                $this->session->set_userdata('username',$username);
-                redirect('dashboard');
-                
+                foreach ($cek->result() as $row){
+                    $sessiondata = array(
+                                      'username' => $username,
+                                      'id_karyawan' => $row->id_petugas,
+                                      'status' => $row->role,
+                                      'gambar' => $row->gambar
+                                 );
+                    $this->session->set_userdata($sessiondata);
+                    redirect('dashboard');
+                }
             }else{
                 //login gagal
                 $this->session->set_flashdata('message','Username atau password salah');

@@ -2,16 +2,37 @@
     <html>
         <head>
             <title>Aplikasi Perpustakaan | <?php echo $title;?></title>
+            <link rel="shortcut icon" href="<?php echo base_url('assets/img/favicon.ico');?>">
+            <link rel="apple-touch-icon" href="<?php echo base_url('assets/img/icon57.png');?>" sizes="57x57">
+            <link rel="apple-touch-icon" href="<?php echo base_url('assets/img/icon72.png');?>" sizes="72x72">
+            <link rel="apple-touch-icon" href="<?php echo base_url('assets/img/icon76.png');?>" sizes="76x76">
+            <link rel="apple-touch-icon" href="<?php echo base_url('assets/img/icon114.png');?>" sizes="114x114">
+            <link rel="apple-touch-icon" href="<?php echo base_url('assets/img/icon120.png');?>" sizes="120x120">
+            <link rel="apple-touch-icon" href="<?php echo base_url('assets/img/icon144.png');?>" sizes="144x144">
+            <link rel="apple-touch-icon" href="<?php echo base_url('assets/img/icon152.png');?>" sizes="152x152">
+            <!-- END Icons -->
+
             <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
-            <link href="<?php echo base_url('assets/font-awesome/css/font-awesome.css');?>" rel="stylesheet">
+            <link href="<?php echo base_url('assets/css/plugins.css');?>" rel="stylesheet">
+            <link href="<?php echo base_url('assets/css/datepicker.css');?>" rel="stylesheet">
         
-            <link href="<?php echo base_url('assets/css/plugins/morris/morris-0.4.3.min.css');?>" rel="stylesheet">
-            <link href="<?php echo base_url('assets/css/plugins/timeline/timeline.css');?>" rel="stylesheet">
+            <link href="<?php echo base_url('assets/css/main.css');?>" rel="stylesheet">
+            <link href="<?php echo base_url('assets/css/themes.css');?>" rel="stylesheet">
+             
+             <script src="<?php echo base_url('assets/js/jquery-1.8.3.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/js/vendor/bootstrap.min.js');?>"></script>
+
+        <script src="<?php echo base_url('assets/js/bootstrap-datepicker.js');?>"></script>
+        <script src="<?php echo base_url('assets/js/plugins.js');?>"></script>
+        <script src="<?php echo base_url('assets/js/app.js');?>"></script>
         
-            
-            <script src="<?php echo base_url('assets/js/jquery-1.8.3.min.js');?>"></script>
-            <script src="<?php echo base_url('assets/js/bootstrap.js');?>"></script>
             <script src="<?php echo base_url('assets/js/tinymce/tinymce.min.js');?>"></script>
+
+         <!-- Load and execute javascript code used only in this page -->
+        
+        <script src="<?php echo base_url('assets/js/pages/tablesDatatables.js');?>"></script>
+        
+            <script src="<?php echo base_url('assets/js/bootstrap.js');?>"></script>
             <script>
                     tinymce.init({selector:'textarea'});
                     
@@ -29,23 +50,29 @@
                         });
                     })
             </script>
+            <script src="<?php echo base_url('assets/js/vendor/modernizr-2.7.1-respond-1.4.2.min.js');?>"></script>
         </head>
         <body>
-            <?php echo $_header;?>
-        
-            
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <?php echo $_sidebar;?>
-                    </div>
-                
-                    <div class="col-md-9">
-                        <?php echo $_content;?>
-                    </div>
-                </div>
+        <div class="preloader themed-background">
+            <h1 class="push-top-bottom text-light text-center"><strong>Pro</strong>UI</h1>
+            <div class="inner">
+                <h3 class="text-light visible-lt-ie9 visible-lt-ie10"><strong>Loading..</strong></h3>
+                <div class="preloader-spinner hidden-lt-ie9 hidden-lt-ie10"></div>
             </div>
+        </div>
+        <div id="page-container" class="sidebar-partial sidebar-visible-lg sidebar-no-animations">
+        <?php echo $_sidebar;?>
+        <div id="main-container">
         
+            <?php echo $_header;?>
+            <?php echo $_content;?>
+            <!-- Footer -->
+                
+                <!-- END Footer -->
+            </div>
+            <!-- END Main Container -->
+        </div>
+        <!-- END Page Container -->
         <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
@@ -66,15 +93,13 @@
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
         
-        <!-- Core Scripts - Include with every page -->
-        <script src="<?php echo base_url('assets/js/holder.js');?>"></script>
-        <script src="<?php echo base_url('assets/js/bootstrap-datepicker.js');?>"></script>
-        <script src="<?php echo base_url('assets/js/application.js');?>"></script>
-        <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
-        <script src="<?php echo base_url('assets/js/plugins/metisMenu/jquery.metisMenu.js');?>"></script>
-        <script src="<?php echo base_url('assets/js/plugins/morris/raphael-2.1.0.min.js');?>"></script>
-        <script src="<?php echo base_url('assets/js/plugins/morris/morris.js');?>"></script>
-        <script src="<?php echo base_url('assets/js/sb-admin.js');?>"></script>
-        <script src="<?php echo base_url('assets/js/demo/dashboard-demo.js');?>"></script>    
+        
         </body>
+        <!-- Core Scripts - Include with every page -->
+        
+        <script>$(function(){ TablesDatatables.init(); });</script>   
+        
+
+
+
     </html>

@@ -59,6 +59,7 @@ class M_Peminjaman extends CI_Model{
     
     function pencarianbuku($cari){
         $this->db->like("judul",$cari);
+        $this->db->where('stock != 0');
         return $this->db->get("buku");
     }
     
