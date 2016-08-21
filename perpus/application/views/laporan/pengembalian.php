@@ -16,7 +16,7 @@
         })
     })
 </script>
-<div id="page-content">
+
 <legend><?php echo $title;?></legend>
 <div class="form-horizontal">
     <div class="form-group">
@@ -39,4 +39,3 @@
 </div>
 
 <div id="tampil"></div>
-</div>

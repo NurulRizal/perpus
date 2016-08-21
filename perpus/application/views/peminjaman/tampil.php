@@ -1,8 +1,8 @@
 <table class="table table-striped">
         <thead>
             <tr>
-                <td>Kode Koleksi</td>
-                <td>Judul Koleksi</td>
+                <td>Kode Buku</td>
+                <td>Judul Buku</td>
                 <td>Pengarang</td>
                 <td></td>
             </tr>
@@ -16,7 +16,7 @@
         </tr>
         <?php endforeach;?>
         <tr>
-            <td colspan="2">Total Koleksi</td>
+            <td colspan="2">Total Buku</td>
             <td colspan="2"><input type="text" id="jumlahTmp" readonly="readonly" value="<?php echo $jumlahTmp;?>" class="form-control"></td>
         </tr>
     </table>

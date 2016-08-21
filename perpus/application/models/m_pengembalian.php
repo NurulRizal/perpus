@@ -2,11 +2,11 @@
 class M_Pengembalian extends CI_Model{
     
     function cariTransaksi($no){
-        $query=$this->db->query("select a.*,b.nama, c.kode_buku from transaksi a,
-                                anggota b, buku c
+        $query=$this->db->query("select a.*,b.nama from transaksi a,
+                                anggota b
                                 where a.id_transaksi='$no' and a.id_transaksi
                                 not in(select id_transaksi from pengembalian)
-                                and a.nis=b.nis and a.kode_buku = c.kode_buku");
+                                and a.nis=b.nis");
         return $query;
     }
     

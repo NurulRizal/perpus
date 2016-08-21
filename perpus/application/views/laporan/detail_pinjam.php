@@ -2,7 +2,7 @@
 <div class="col-md-6">
     <div class="form-horizontal">
     <div class="form-group">
-        <label class="col-lg-5">No. Peminjaman</label>
+        <label class="col-lg-5">ID Transaksi</label>
         <div class="col-lg-5">
             : <?php echo $pinjam['id_transaksi'];?>
         </div>
@@ -16,7 +16,7 @@
     </div>
     
     <div class="form-group">
-        <label class="col-lg-5">NIP/No KTP/No SIM</label>
+        <label class="col-lg-5">NIP</label>
         <div class="col-lg-5">
             : <?php echo $pinjam['nis'];?>
         </div>
@@ -27,8 +27,8 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <td>Kode Koleksi</td>
-            <td>Judul</td>
+            <td>Kode Buku</td>
+            <td>Judul Buku</td>
             <td>Pengarang</td>
         </tr>
     </thead>

@@ -1,8 +1,8 @@
 <table class="table table-striped">
         <thead>
             <tr>
-                <td>Kode Koleksi</td>
-                <td>Judul Koleksi</td>
+                <td>Kode Buku</td>
+                <td>Judul Buku</td>
                 <td>Pengarang</td>
                 <td></td>
             </tr>
@@ -14,7 +14,7 @@
             <td><?php echo $tmp->pengarang;?></td>
             <td><a href="#" class="tambah" kode="<?php echo $tmp->kode_buku;?>"
             judul="<?php echo $tmp->judul;?>"
-            pengarang="<?php echo $tmp->pengarang;?>"><i class="fa fa-plus"></i></a></td>
+            pengarang="<?php echo $tmp->pengarang;?>"><i class="glyphicon glyphicon-plus"></i></a></td>
         </tr>
         <?php endforeach;?>
     </table>

@@ -10,13 +10,6 @@ class M_buku extends CI_Model{
             $this->db->order_by($order_column,$order_type);
         return $this->db->get($this->table,$limit,$offset);
     }
-
-    function semuaFront(){
-        $this->db->where('publish = 1');
-        $query=$this->db->get($this->table);
-        
-        return $query;
-    }
     
     function jumlah(){
         return $this->db->count_all($this->table);
@@ -25,17 +18,6 @@ class M_buku extends CI_Model{
     function cek($kode){
         $this->db->where($this->primary,$kode);
         $query=$this->db->get($this->table);
-        
-        return $query;
-    }
-
-    function detail($kode){
-        $this->db->select('*');
-        $this->db->from($this->table);
-        $this->db->join('jenis', 'jenis.id_jenis = buku.id_jenis');
-        $this->db->join('subject', 'subject.id_subject = buku.id_subject');
-        $this->db->where($this->primary,$kode);
-        $query=$this->db->get();
         
         return $query;
     }
@@ -59,13 +41,5 @@ class M_buku extends CI_Model{
         $this->db->like($this->primary,$cari);
         $this->db->or_like("judul",$cari);
         return $this->db->get($this->table);
-    }
-
-    function validation($kode, $nama)
-    {
-        $this->db->where("kode_buku ='".$kode."' or judul = '".$nama."'");
-        $query=$this->db->get($this->table);
-        
-        return $query;
     }
 }

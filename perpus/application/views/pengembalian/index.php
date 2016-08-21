@@ -1,6 +1,6 @@
 <script>
     $(function(){
-        $("#no").keypress(function(event){
+        $("#no").keypress(function(){
             var keycode = (event.keyCode ? event.keyCode : event.which);
             
             if(keycode == '13'){
@@ -20,7 +20,6 @@
                             $("#pinjam").val(data[1]);
                             $("#kembali").val(data[2]);
                             $("#nama").val(data[3]);
-                            $("#id").val(data[4]);
                             
                             $("#denda").attr("disabled",false);
                             $("#denda").focus();
@@ -53,7 +52,6 @@
             var denda=$("#denda").val();
             var nominal=parseInt($("#nominal").val());
             var no=$("#no").val();
-            var id=$("#id").val();
             
             if (no=="" || nis=="") {
                 alert("Pilih ID Transaksi");
@@ -69,7 +67,7 @@
                     $.ajax({
                         url:"<?php echo site_url('pengembalian/simpan');?>",
                         type:"POST",
-                        data:"no="+no+"&denda="+denda+"&nominal="+nominal+"&id="+id,
+                        data:"no="+no+"&denda="+denda+"&nominal="+nominal,
                         cache:false,
                         success:function(html){
                             alert("Data Berhasil disimpan");
@@ -81,7 +79,7 @@
                 $.ajax({
                     url:"<?php echo site_url('pengembalian/simpan');?>",
                     type:"POST",
-                    data:"no="+no+"&denda="+denda+"&nominal="+nominal+"&id="+id,
+                    data:"no="+no+"&denda="+denda+"&nominal="+nominal,
                     cache:false,
                     success:function(html){
                         alert("Data Berhasil disimpan");
@@ -120,7 +118,7 @@
     })
 </script>
 
-<div id="page-content">
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <?php echo $title;?>
@@ -129,13 +127,13 @@
         <form class="form-horizontal" action="" method="post">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="col-lg-4 control-label">No. Peminjaman</label>
+                    <label class="col-lg-4 control-label">No. Transaksi</label>
                     <div class="col-lg-5">
                         <input type="text" name="no" id="no" class="form-control">
                     </div>
                     
                     <div class="col-lg-2">
-                        <a href="#" class="btn btn-primary" id="cari"><i class="fa fa-search"></i></a>
+                        <a href="#" class="btn btn-primary" id="cari"><i class="glyphicon glyphicon-search"></i></a>
                     </div>
                 </div>
                 
@@ -156,7 +154,7 @@
             
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="col-lg-4 control-label">NIP/No KTP/No SIM</label>
+                    <label class="col-lg-4 control-label">Nis</label>
                     <div class="col-lg-7">
                         <input type="text" name="nis" id="nis" class="form-control" readonly="readonly">
                     </div>
@@ -168,7 +166,7 @@
                         <input type="text" name="nama" id="nama" class="form-control" readonly="readonly">
                     </div>
                 </div>
-                <input type="text" id='id' name='id'>
+                
                 <div class="form-group">
                     <label class="col-lg-4 control-label">Denda</label>
                     <div class="col-lg-7">
@@ -194,7 +192,7 @@
     <div id="tampil"></div>
     
     <div class="panel-footer">
-        <button id="simpan" class="btn btn-primary"><i class="fa fa-saved"></i> Simpan</button>
+        <button id="simpan" class="btn btn-primary"><i class="glyphicon glyphicon-saved"></i> Simpan</button>
     </div>
 </div>
 
@@ -206,12 +204,12 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Pengembalian</h4>
+                    <h4 class="modal-title">Transaksi Pengembalian</h4>
                   </div>
                   <div class="modal-body">
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-lg-5">Cari</label>
+                                <label class="col-lg-5">Cari Nis Peminjam</label>
                                 <div class="col-lg-5">
                                     <input type="text" id="carinis" class="form-control">
                                 </div>
@@ -223,4 +221,3 @@
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-            </div>

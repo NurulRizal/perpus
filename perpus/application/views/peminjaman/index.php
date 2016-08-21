@@ -92,7 +92,7 @@
             var jumlah=parseInt($("#jumlahTmp").val(),10);
             
             if (nis=="") {
-                alert("Pilih NIP Anggota");
+                alert("Pilih Nis Siswa");
                 return false;
             }else if (jumlah==0) {
                 alert("pilih buku yang akan dipinjam");
@@ -158,14 +158,14 @@
         
     })
 </script>
-<div id="page-content">
+
 <legend><?php echo $title;?></legend>
 <div class="panel panel-default">
     <div class="panel-body">
         <form class="form-horizontal" action="<?php echo site_url('peminjaman/simpan');?>" method="post">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="col-lg-4 control-label">No. Peminjaman</label>
+                    <label class="col-lg-4 control-label">No. Transaksi</label>
                     <div class="col-lg-7">
                         <input type="text" id="no" name="no" class="form-control" value="<?php echo $noauto;?>" readonly="readonly">
                     </div>
@@ -187,7 +187,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="col-lg-4 control-label">NIP/No KTP/No SIM</label>
+                    <label class="col-lg-4 control-label">Nis</label>
                     <div class="col-lg-7">
                         <select name="nis" class="form-control" id="nis">
                             <option></option>
@@ -199,7 +199,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="col-lg-4 control-label">Nama Pegawai</label>
+                    <label class="col-lg-4 control-label">Nama Siswa</label>
                     <div class="col-lg-7">
                         <input type="text" name="nama" id="nama" class="form-control">
                     </div>
@@ -211,18 +211,18 @@
 
 <div class="panel panel-success">
     <div class="panel-heading">
-        Data Koleksi
+        Data Buku
     </div>
     
     <div class="panel-body">
         <div class="form-inline">
             <div class="form-group">
-                <label>Kode Koleksi</label>
-                <input type="text" class="form-control" placeholder="Kode Koleksi" id="kode">
+                <label>Kode Buku</label>
+                <input type="text" class="form-control" placeholder="Kode Buku" id="kode">
             </div>
             <div class="form-group">
-                <label class="sr-only">Judul Koleksi</label>
-                <input type="text" class="form-control" placeholder="Judul Koleksi" id="judul" readonly="readonly">
+                <label class="sr-only">Judul Buku</label>
+                <input type="text" class="form-control" placeholder="Judul Buku" id="judul" readonly="readonly">
             </div>
             <div class="form-group">
                 <label class="sr-only">Pengarang</label>
@@ -230,11 +230,11 @@
             </div>
             <div class="form-group">
                 <label class="sr-only">Pengarang</label>
-                <button id="tambah" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+                <button id="tambah" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i></button>
             </div>
             <div class="form-group">
                 <label class="sr-only">Pengarang</label>
-                <button id="cari" class="btn btn-default"><i class="fa fa-search"></i></button>
+                <button id="cari" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
             </div>
         </div>
     </div>
@@ -242,7 +242,7 @@
     <div id="tampil"></div>
     
     <div class="panel-footer">
-        <button id="simpan" class="btn btn-primary"><i class="fa fa-hdd"></i> Simpan</button>
+        <button id="simpan" class="btn btn-primary"><i class="glyphicon glyphicon-hdd"></i> Simpan</button>
     </div>
 </div>
 
@@ -255,11 +255,11 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Peminjaman</h4>
+                    <h4 class="modal-title">Cari Buku</h4>
                   </div>
                   <div class="modal-body">
                         <div class="form-horizontal">
-                            <label class="col-lg-3 control-label">Cari Koleksi</label>
+                            <label class="col-lg-3 control-label">Cari Nama Buku</label>
                             <div class="col-lg-5">
                                 <input type="text" name="caribuku" id="caribuku" class="form-control">
                             </div>
@@ -274,4 +274,3 @@
                 </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-</div>

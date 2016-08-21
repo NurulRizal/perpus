@@ -6,7 +6,6 @@ class Pengembalian extends CI_Controller{
         parent::__construct();
         $this->load->library(array('template','form_validation'));
         $this->load->model('m_pengembalian');
-        $this->load->model('m_buku');
         
         if(!$this->session->userdata('username')){
             redirect('web');
@@ -24,7 +23,7 @@ class Pengembalian extends CI_Controller{
         $transaksi=$this->m_pengembalian->cariTransaksi($no);
         if($transaksi->num_rows()>0){
             $transaksi=$transaksi->row_array();
-            echo $transaksi['nis']."|".$transaksi['tanggal_pinjam']."|".$transaksi['tanggal_kembali']."|".$transaksi['nama']."|".$transaksi['kode_buku'];
+            echo $transaksi['nis']."|".$transaksi['tanggal_pinjam']."|".$transaksi['tanggal_kembali']."|".$transaksi['nama'];
         }
         
         
@@ -47,12 +46,7 @@ class Pengembalian extends CI_Controller{
         );
         $this->m_pengembalian->simpan($info);
         
-        $data=$this->m_buku->cek($this->input->post('id'));
-            $infox=array(
-                    'stock'=>$data->row()->stock+1,
-                );
-        $this->m_buku->update($data->row()->kode_buku,$infox);
-            
+        //update status peminjaman dari N menjadi Y
         $no=$this->input->post('no');
         $update=array(
             'status'=>"Y"
