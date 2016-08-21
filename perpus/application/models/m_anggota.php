@@ -16,7 +16,7 @@ class M_anggota extends CI_Model{
     }
     
     function cek($kode){
-        $this->db->where($this->primary,$kode);
+        $this->db->where('no_anggota',$kode);
         $query=$this->db->get($this->table);
         
         return $query;

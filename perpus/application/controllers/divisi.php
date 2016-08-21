@@ -84,7 +84,7 @@ class Divisi extends CI_Controller{
     
     function hapus(){
         $kode=$this->input->post('kode');
-        $detail=$this->m_subject->cek($kode)->result();
+        $detail=$this->m_divisi->cek($kode)->result();
 	foreach($detail as $det):
 	    unlink("assets/img/".$det->image);
 	endforeach;

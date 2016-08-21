@@ -95,10 +95,10 @@ class Anggota extends CI_Controller{
         $data['divisi']=$this->m_divisi->semua($this->limit,$offset,$order_column,$order_type)->result();
         $this->_set_rules();
         if($this->form_validation->run()==true){
-            $nis=$this->input->post('nis');
+            $nis=$this->input->post('no_anggota');
             $cek=$this->m_anggota->cek($nis);
             if($cek->num_rows()>0){
-                $data['message']="<div class='alert alert-warning'>Nik sudah digunakan</div>";
+                $data['message']="<div class='alert alert-warning'>Nomor Anggota sudah digunakan</div>";
                 $this->template->display('anggota/tambah',$data);
             }else{
                 //setting konfiguras upload image
@@ -163,7 +163,7 @@ class Anggota extends CI_Controller{
     }
     
     function _set_rules(){
-        $this->form_validation->set_rules('nis','NIS','required|max_length[10]');
+        $this->form_validation->set_rules('nis','NIK','required|max_length[100]');
         $this->form_validation->set_rules('nama','Nama','required|max_length[50]');
         $this->form_validation->set_rules('jk','Jenis Kelamin','required|max_length[2]');
         

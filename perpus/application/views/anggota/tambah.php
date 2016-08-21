@@ -37,13 +37,13 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="example-text-input">Nama</label>
                                         <div class="col-md-9">
-                                            <input type="text" id="example-text-input" name="nama" class="form-control" placeholder="nama">
+                                            <input type="text" id="example-text-input" name="nama" class="form-control" placeholder="nama" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="example-text-input">Password</label>
                                         <div class="col-md-9">
-                                            <input type="password" id="example-text-input" name="password" class="form-control" placeholder="Password">
+                                            <input type="password" id="example-text-input" name="password" class="form-control" placeholder="Password" required>
                                         </div>
                                     </div>
 									<div class="form-group">
@@ -83,13 +83,13 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="example-text-input">Email</label>
                                         <div class="col-md-9">
-                                            <input type="email" id="example-text-input" name="email" class="form-control" placeholder="Email">
+                                            <input type="email" id="example-text-input" name="email" class="form-control" placeholder="Email" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="example-text-input">No Telp</label>
                                         <div class="col-md-9">
-                                            <input type="text" id="example-text-input" name="telp" class="form-control" placeholder="No Telp">
+                                            <input type="text" id="example-text-input" name="telp" class="form-control" placeholder="No Telp" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
