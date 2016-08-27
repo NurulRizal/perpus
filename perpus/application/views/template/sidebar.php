@@ -230,6 +230,9 @@
                                 <a href="<?php echo site_url('buku');?>" <i class="gi gi-certificate sidebar-nav-icon"></i> Buku</a>
                             </li>
                             <li>
+                                <a href="<?php echo site_url('news');?>" <i class="gi gi-certificate sidebar-nav-icon"></i> Berita</a>
+                            </li>
+                            <li>
                                 <a href="<?php echo site_url('dashboard/petugas');?>" <i class="gi gi-certificate sidebar-nav-icon"></i> Pustakawan</a>
                             </li>
                             

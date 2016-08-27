@@ -122,7 +122,18 @@
             $objWriter = IOFactory::createWriter($objPHPExcel, 'Excel5');                
             $objWriter->save('php://output');
         } else {
-            echo "ea";
+            $data['lap']=$this->m_laporan->detailpeminjaman($tanggal1,$tanggal2)->result();
+            ob_start();
+            $this->load->view('laporan/cari_pinjaman',$data);
+            $html = ob_get_contents();
+            ob_end_clean();
+     
+            require_once('./assets/html2pdf/html2pdf.class.php');
+            $pdf = new HTML2PDF('P','A4','en');
+            $pdf->WriteHTML($html);
+            $pdf->Output('Data Siswa.pdf', 'D');
         }
     }
+
+    
 }

@@ -74,10 +74,10 @@
                                 </a>
                             </li>
                             <!-- END Menu Toggle -->
-                            <li class="active">
+                            <li>
                                 <a href="<?php echo site_url('depan');?>"</i>Home</a>
                             </li>
-                            <li>
+                            <li class="active">
                                 <a href="<?php echo site_url('depan/news');?>">News</a>
                             </li>
                             <li>
@@ -109,17 +109,36 @@
             <!-- Content -->
             <section class="site-content site-section">
                 <div class="container">
-                    <div class="row portfolio">
-                    <?php foreach($depan->result() as $row):?>
-                        <div class="col-sm-4 portfolio-item animation-fadeInQuick" data-category="design">
-                            <a href="<?php echo site_url('depan/koleksi/'.$row->kode_buku);?>">
-                                <img src="<?php echo base_url('assets/img/'.$row->image);?>" alt="Image" height='100px' class="img-responsive">
-                                <span class="portfolio-item-info"><strong><?php echo $row->judul;?></strong></span>
-                            </a>
+                    
+                    <div class="row">
+                        <!-- Posts -->
+                        <div class="col-sm-8 col-md-9">
+                            <!-- Blog Post -->
+                            <?php foreach($depan->result() as $row):?>
+                            <div class="site-block">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p>
+                                            <a href="<?php echo site_url('depan/detail/'.$row->id_news);?>">
+                                                <img src="<?php echo base_url('assets/img/'.$row->image);?>" alt="image" class="img-responsive">
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h3 class="site-heading"><strong><?php echo $row->title;?></strong></h3>
+                                        <p><?php echo substr($row->body, 22, 50);?>[...]</p>
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <p class="pull-right">
+                                        <a href="<?php echo site_url('depan/detail/'.$row->id_news);?>" class="label label-primary">Read more..</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- END Blog Post -->
+                            <?php endforeach; ?>
                         </div>
-                    <?php endforeach; ?>
                     </div>
-                    <!-- END Portfolio Items -->
                 </div>
             </section>
             <!-- END Content -->

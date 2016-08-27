@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2016 at 08:34 PM
+-- Generation Time: Aug 27, 2016 at 07:53 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -100,9 +100,7 @@ CREATE TABLE `divisi` (
 
 INSERT INTO `divisi` (`id_divisi`, `nama_divisi`) VALUES
 (1, 'Keuangan'),
-(2, 'SDM'),
-(3, 'baru'),
-(4, 'lama');
+(2, 'SDM');
 
 -- --------------------------------------------------------
 
@@ -135,6 +133,27 @@ CREATE TABLE `koleksi` (
   `id_jenis` int(11) NOT NULL,
   `nama_jenis` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id_news` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `body` text NOT NULL,
+  `publish` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id_news`, `title`, `body`, `publish`, `image`) VALUES
+(2, 'Berita satu', '<div id="lipsum">\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae fringilla magna, sit amet egestas justo. Praesent et hendrerit nibh. Donec egestas felis sed ullamcorper eleifend. Etiam nec accumsan lectus, vitae pretium ex. Ut vel elit mi. In egestas malesuada magna, in posuere nisl molestie hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent dapibus, justo sed hendrerit dictum, ipsum arcu consequat dui, vel consequat lorem ligula sit amet mi. Morbi egestas ante at justo blandit, vitae volutpat neque vehicula. Suspendisse dapibus eget diam vel hendrerit. Aliquam imperdiet sollicitudin ipsum, vitae fermentum enim porta ac.</p>\r\n<p>Etiam a felis in libero luctus ornare. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ac tortor eu nunc lacinia dapibus at eu dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque sed nunc purus. Sed at faucibus metus, at fringilla orci. Vivamus accumsan ligula neque, non mattis nibh ultrices vulputate. Nulla mauris orci, blandit nec feugiat quis, dictum facilisis neque. Phasellus vel pharetra nisi. Proin euismod augue lacus, lacinia venenatis magna interdum non.</p>\r\n<p>Mauris porta dui eu mollis luctus. Phasellus euismod bibendum sem, sed mollis arcu gravida et. Sed nec ultrices dolor, vel tincidunt ipsum. Maecenas pretium congue convallis. Nam malesuada, lorem ac tincidunt faucibus, nisi nisi dictum neque, quis faucibus risus dui non diam. Maecenas porttitor ipsum vulputate, sagittis lectus tincidunt, lacinia neque. Nam porta pellentesque nisi, a convallis orci tristique eu. Fusce laoreet diam et ligula elementum, sit amet lacinia nibh pretium. Nunc sodales arcu eros, et finibus nulla ornare eget. In venenatis, lectus a hendrerit iaculis, eros eros tincidunt orci, sed lacinia ligula elit vitae leo. Nam tristique, massa quis ullamcorper interdum, nulla nulla facilisis sapien, et consequat ante leo at augue.</p>\r\n<p>Nunc laoreet, ipsum nec maximus feugiat, augue sem tincidunt mauris, vitae tincidunt mi ipsum id nisl. Donec porttitor tincidunt sem vel bibendum. Nunc et nisl velit. Nulla facilisi. Proin orci libero, volutpat sit amet nisl et, scelerisque faucibus odio. Aliquam condimentum auctor tellus vel commodo. Donec commodo molestie libero, et ultrices lacus ultricies ut. Pellentesque ut risus mauris. Curabitur massa tortor, tincidunt sit amet lobortis vel, venenatis in arcu. Maecenas vel mauris nec mi dignissim cursus. Proin dictum diam odio, eu pulvinar nisl placerat eu. Pellentesque risus elit, scelerisque ac lorem volutpat, commodo accumsan nisi. Quisque lobortis massa diam, vel rhoncus arcu eleifend eu. Cras bibendum erat sed dui accumsan luctus.</p>\r\n<p>Vivamus hendrerit molestie dolor, et feugiat mi vulputate et. Donec suscipit nunc a hendrerit aliquet. Fusce tempus metus nec erat porta suscipit. Fusce tincidunt libero id tellus sodales ornare. Vestibulum tincidunt vitae dolor et lacinia. Donec faucibus porta consequat. Nam egestas diam a nisi dignissim condimentum. Mauris dolor libero, tristique ac orci eu, luctus tristique dolor. Aenean eu arcu eget orci congue hendrerit.</p>\r\n</div>', 1, 'Untitled1.jpeg');
 
 -- --------------------------------------------------------
 
@@ -315,6 +334,12 @@ ALTER TABLE `koleksi`
   ADD PRIMARY KEY (`id_jenis`);
 
 --
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id_news`);
+
+--
 -- Indexes for table `petugas`
 --
 ALTER TABLE `petugas`
@@ -340,7 +365,7 @@ ALTER TABLE `tmp`
 -- AUTO_INCREMENT for table `divisi`
 --
 ALTER TABLE `divisi`
-  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `jenis`
 --
@@ -351,6 +376,11 @@ ALTER TABLE `jenis`
 --
 ALTER TABLE `koleksi`
   MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `petugas`
 --

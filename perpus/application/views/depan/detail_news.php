@@ -78,7 +78,7 @@
                                 <a href="<?php echo site_url('depan');?>"</i>Home</a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('depan/news');?>">News</a>
+                                <a href="#">News</a>
                             </li>
                             <li>
                                 <a href="#">Contact</a>
@@ -100,29 +100,26 @@
             <!-- Intro -->
             <section class="site-section site-section-light site-section-top themed-background-dark">
                 <div class="container">
-                    <h1 class="text-center animation-slideDown"><strong>Our Work</strong></h1>
-                    <h2 class="h3 text-center animation-slideUp">We will be happy to work together and bring your ideas to life!</h2>
+                    <h1 class="animation-slideDown"><strong><?php echo $buku->title;?></strong></h1>
                 </div>
             </section>
             <!-- END Intro -->
 
-            <!-- Content -->
             <section class="site-content site-section">
                 <div class="container">
-                    <div class="row portfolio">
-                    <?php foreach($depan->result() as $row):?>
-                        <div class="col-sm-4 portfolio-item animation-fadeInQuick" data-category="design">
-                            <a href="<?php echo site_url('depan/koleksi/'.$row->kode_buku);?>">
-                                <img src="<?php echo base_url('assets/img/'.$row->image);?>" alt="Image" height='100px' class="img-responsive">
-                                <span class="portfolio-item-info"><strong><?php echo $row->judul;?></strong></span>
-                            </a>
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1 site-block">
+                            <!-- Story -->
+                            <article>
+                                <?php echo $buku->body;?>
+                            </article>
+                            <!-- END Story -->
                         </div>
-                    <?php endforeach; ?>
                     </div>
-                    <!-- END Portfolio Items -->
+                    <hr>
                 </div>
             </section>
-            <!-- END Content -->
+            <!-- END Article -->
 
             <!-- Footer -->
             <footer class="site-footer site-section">
@@ -183,18 +180,5 @@
         <!-- Load and execute javascript code used only in this page -->
         <script src="<?php echo base_url('assets/js/pages/portfolio.js');?>"></script>
         <script>$(function(){ Portfolio.init(); });</script>
-        <!--Start of Tawk.to Script-->
-        <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/57c050cf35bbb95a94d93c44/default';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-        })();
-        </script>
-        <!--End of Tawk.to Script-->
     </body>
 </html>
