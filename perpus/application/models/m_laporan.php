@@ -24,6 +24,6 @@ class M_Laporan extends CI_Model{
     }
     
     function detailpengembalian($tanggal1,$tanggal2){
-        return $this->db->query("select * from pengembalian inner join transaksi on transaksi.id_transaksi = pengembalian.id_transaksi inner join anggota on transaksi.nis = anggota.nis where pengembalian.tgl_pengembalian between '$tanggal1' and '$tanggal2' group by id_transaksi");
+        return $this->db->query("select * from pengembalian inner join transaksi on transaksi.id_transaksi = pengembalian.id_transaksi inner join anggota on transaksi.nis = anggota.nis where pengembalian.tgl_pengembalian between '$tanggal1' and '$tanggal2' group by transaksi.id_transaksi");
     }
 }
