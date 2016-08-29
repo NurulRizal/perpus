@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2016 at 07:53 PM
+-- Generation Time: Aug 29, 2016 at 06:12 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -101,6 +101,32 @@ CREATE TABLE `divisi` (
 INSERT INTO `divisi` (`id_divisi`, `nama_divisi`) VALUES
 (1, 'Keuangan'),
 (2, 'SDM');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email`
+--
+
+CREATE TABLE `email` (
+  `id_email` int(11) NOT NULL,
+  `dari` varchar(255) NOT NULL,
+  `ke` varchar(255) NOT NULL,
+  `cc` varchar(255) NOT NULL,
+  `bcc` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `body` text NOT NULL,
+  `status` int(11) NOT NULL,
+  `in_out` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `email`
+--
+
+INSERT INTO `email` (`id_email`, `dari`, `ke`, `cc`, `bcc`, `subject`, `body`, `status`, `in_out`) VALUES
+(1, '', 'xzcasd', '', '', 'zxcasd', '', 0, 1),
+(2, '', 'fdg', '', '', 'dfg', '<p>dfg</p>', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -322,6 +348,12 @@ ALTER TABLE `divisi`
   ADD PRIMARY KEY (`id_divisi`);
 
 --
+-- Indexes for table `email`
+--
+ALTER TABLE `email`
+  ADD PRIMARY KEY (`id_email`);
+
+--
 -- Indexes for table `jenis`
 --
 ALTER TABLE `jenis`
@@ -366,6 +398,11 @@ ALTER TABLE `tmp`
 --
 ALTER TABLE `divisi`
   MODIFY `id_divisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `email`
+--
+ALTER TABLE `email`
+  MODIFY `id_email` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `jenis`
 --
