@@ -12,6 +12,10 @@ class Web extends CI_Controller{
     function index(){
         $this->load->view('web/index');
     }
+
+    function back(){
+        $this->load->view('web/back');
+    }
     
     function cari_buku(){
         $cari=$this->input->post('cari');
@@ -57,6 +61,38 @@ class Web extends CI_Controller{
                                       'id_karyawan' => $row->id_petugas,
                                       'status' => $row->role,
                                       'gambar' => $row->gambar
+                                 );
+                    $this->session->set_userdata($sessiondata);
+                    redirect('dashboard');
+                }
+            }else{
+                //login gagal
+                $this->session->set_flashdata('message','Username atau password salah');
+                redirect('web');
+            }
+        }
+    }
+
+    function proses_anggota(){
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('username','Username','required|trim|xss_clean');
+        $this->form_validation->set_rules('password','password','required|trim|xss_clean');
+        
+        if($this->form_validation->run()==false){
+            $this->session->set_flashdata('message','Username dan password harus diisi');
+            redirect('web');
+        }else{
+            $username=$this->input->post('username');
+            $password=$this->input->post('password');
+            $cek=$this->m_anggota->cekUser($username,$password);
+            if($cek->num_rows()>0){
+                //login berhasil, buat session
+                foreach ($cek->result() as $row){
+                    $sessiondata = array(
+                                      'username' => $row->nama,
+                                      'id_karyawan' => $row->nis,
+                                      'status' => $row->status,
+                                      'gambar' => $row->image
                                  );
                     $this->session->set_userdata($sessiondata);
                     redirect('dashboard');

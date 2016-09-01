@@ -42,13 +42,13 @@
             <!-- Login Block -->
             <div class="block push-bit">
                 <!-- Login Form -->
-                <form action="<?php echo site_url('web/proses_anggota');?>" method="post" id="form-login" class="form-horizontal form-bordered form-control-borderless">
+                <form action="<?php echo site_url('web/proses');?>" method="post" id="form-login" class="form-horizontal form-bordered form-control-borderless">
                  <?php echo $this->session->flashdata('message');?>
                     <div class="form-group">
                         <div class="col-xs-12">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
-                                <input type="text" id="login-email" name="username" class="form-control input-lg" placeholder="NIP/No KTP/No SIM">
+                                <input type="text" id="login-email" name="username" class="form-control input-lg" placeholder="Username">
                             </div>
                         </div>
                     </div>

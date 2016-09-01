@@ -43,15 +43,14 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="example-text-input">Password</label>
                                         <div class="col-md-9">
-                                            <input type="password" id="example-text-input" name="password" class="form-control" placeholder="Password">
+                                            <input type="password" id="example-text-input" name="password" class="form-control" placeholder="Password" value="<?php echo $anggota['password'];?>">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="example-select">Jenis KeAnggotaan</label>
                                         <div class="col-md-9">
                                             <select id="example-select" name="stat" class="form-control" size="1">
-                                                <option value="0">Please select</option>
-                                                <option value="<?= $anggota['status'];?>" selected><?= $anggota['status'];?></option>
+                                                <option value="<?= $anggota['status'];?>"><?= $anggota['status'];?></option>
                                                 <option value="Premium">Premium</option>
                                                 <option value="Biasa">Biasa</option>
                                             </select>

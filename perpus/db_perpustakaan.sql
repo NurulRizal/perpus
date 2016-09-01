@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2016 at 06:12 PM
+-- Generation Time: Sep 01, 2016 at 11:30 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.5.30
 
@@ -44,7 +44,7 @@ CREATE TABLE `anggota` (
 --
 
 INSERT INTO `anggota` (`nis`, `nama`, `email`, `jk`, `status`, `image`, `phone`, `password`, `no_anggota`, `id_divisi`) VALUES
-('1234567890', 'budi', 'budi@bppkemendagri.com', 'L', 'Biasa', 'Untitled.jpeg', '0987654657', '', 123, 1);
+('2131231231', 'anggota', 'anggoya@mail.com', 'L', 'Premium', '', '12312312', 'anggota', 123, 1);
 
 -- --------------------------------------------------------
 

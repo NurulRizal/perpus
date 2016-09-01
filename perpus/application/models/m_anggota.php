@@ -3,6 +3,12 @@ class M_anggota extends CI_Model{
     private $table="anggota";
     private $primary="nis";
     
+    function cekUser($username,$password){
+        $this->db->where("nis",$username);
+        $this->db->where("password",$password);
+        return $this->db->get("anggota");
+    }
+
     function semua($limit=10,$offset=0,$order_column='',$order_type='asc'){
         if(empty($order_column) || empty($order_type))
             $this->db->order_by($this->primary,'asc');
@@ -16,7 +22,7 @@ class M_anggota extends CI_Model{
     }
     
     function cek($kode){
-        $this->db->where('no_anggota',$kode);
+        $this->db->where('nis',$kode);
         $query=$this->db->get($this->table);
         
         return $query;
