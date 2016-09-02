@@ -42,6 +42,7 @@
 
                     <!-- Mini Top Stats Row -->
                     <div class="row">
+                        <?php if ($this->session->userdata('status') == 'Staff' || $this->session->userdata('status') == 'Admin'){?>
                         <div class="col-sm-6 col-lg-3">
                             <!-- Widget -->
                             <a href="<?php echo site_url('anggota');?>" class="widget widget-hover-effect1">
@@ -116,7 +117,22 @@
                             </a>
                             <!-- END Widget -->
                         </div>
-                        
+                        <?php } else {?>
+                        <div class="col-sm-6 col-lg-3">
+                            <!-- Widget -->
+                            <a href="<?php echo site_url('peminjaman');?>" class="widget widget-hover-effect1">
+                                <div class="widget-simple">
+                                    <div class="widget-icon pull-left themed-background-fire animation-fadeIn">
+                                        <i class="gi gi-suitcase"></i>
+                                    </div>
+                                    <h3 class="widget-content text-right animation-pullDown">
+                                        <strong>Peminjaman</strong>
+                                    </h3>
+                                </div>
+                            </a>
+                            <!-- END Widget -->
+                        </div>
+                        <?php }?>
                    </div>
                    </div>
                    <footer class="clearfix">

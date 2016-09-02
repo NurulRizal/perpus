@@ -185,7 +185,9 @@
                     </div>
                 </div>
             </div>
+           
             <div class="col-md-6">
+             <?php if ($this->session->userdata('status') == 'Staff' || $this->session->userdata('status') == 'Admin'){?>
                 <div class="form-group">
                     <label class="col-lg-4 control-label">NIP/No KTP/No SIM</label>
                     <div class="col-lg-7">
@@ -197,13 +199,20 @@
                         </select>
                     </div>
                 </div>
-                
                 <div class="form-group">
-                    <label class="col-lg-4 control-label">Nama Pegawai</label>
+                    <label class="col-lg-4 control-label">Nama Anggota</label>
                     <div class="col-lg-7">
                         <input type="text" name="nama" id="nama" class="form-control">
                     </div>
                 </div>
+                <?php } else {?>
+                        <label class="col-lg-4 control-label">Nama Anggota</label>
+                        <div class="col-lg-7">
+                        <input type="text" id="kembali" name="" class="form-control" value="<?php echo $this->session->userdata('username'); ?>" readonly="readonly">
+                        <input type="hidden" id="kembali" name="nis" class="form-control" value="<?php echo $this->session->userdata('id_karyawan'); ?>" readonly="readonly">
+                        </div>
+                <?php }?>
+                
             </div>
         </form>
     </div>

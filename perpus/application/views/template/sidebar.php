@@ -210,7 +210,7 @@
                             <li>
                                 <a href="<?php echo site_url('dashboard');?>" class=" active"><i class="gi gi-stopwatch sidebar-nav-icon"></i>Dashboard</a>
                             </li>
-                            
+                            <?php if ($this->session->userdata('status') == 'Staff' || $this->session->userdata('status') == 'Admin'){?>
                             <li class="sidebar-header">
                                 <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
                                 <span class="sidebar-header-title">Master</span>
@@ -264,6 +264,15 @@
                             <li>
                                 <a href="<?php echo site_url('laporan/pengembalian');?>"><i class="gi gi-brush sidebar-nav-icon"></i> Data Pengembalian</a>
                             </li>
+                            <?php } else {?>
+                            <li class="sidebar-header">
+                                <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
+                                <span class="sidebar-header-title">Sirkulasi</span>
+                            </li>
+                            <li>
+                                <a href="<?php echo site_url('peminjaman');?>"><i class="fa fa-wrench sidebar-nav-icon"></i> Peminjaman</a>
+                            </li>
+                            <?php }?>
                         </ul>
 
 
